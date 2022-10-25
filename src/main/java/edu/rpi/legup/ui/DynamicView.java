@@ -107,7 +107,7 @@ public class DynamicView extends JPanel {
             JLabel zoomLabel = new JLabel("100%");
             zoomLabel.setFont(MaterialFonts.getRegularFont(16f));
 
-            JSlider zoomSlider = new JSlider(25, 400, 100);
+            JSlider zoomSlider = new JSlider(30, 400, 100);
 
             JButton plus = new JButton(new ImageIcon(ImageIO.read(
                     Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource(
@@ -123,7 +123,7 @@ public class DynamicView extends JPanel {
             minus.setPreferredSize(new Dimension(20, 20));
             minus.setFont(MaterialFonts.getRegularFont(10f));
             minus.addActionListener((ActionEvent e) -> zoomSlider.setValue(zoomSlider.getValue() - 25));
-            this.scrollView.setWheelScrollingEnabled(true);
+            this.scrollView.setWheelScrollingEnabled(false);
 
             zoomSlider.setPreferredSize(new Dimension(160, 30));
 
@@ -136,6 +136,10 @@ public class DynamicView extends JPanel {
             });
 
             zoomSlider.addChangeListener((ChangeEvent e) -> {
+                System.out.println("slider value " + zoomSlider.getValue());
+                if (zoomSlider.getValue() == 56) {
+                    zoomSlider.setValue(57);
+                }
                 scrollView.zoomTo(zoomSlider.getValue() / 100.0);
                 zoomLabel.setText(zoomSlider.getValue() + "%");
             });
