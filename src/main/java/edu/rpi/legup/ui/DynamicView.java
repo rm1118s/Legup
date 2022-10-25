@@ -136,10 +136,6 @@ public class DynamicView extends JPanel {
             });
 
             zoomSlider.addChangeListener((ChangeEvent e) -> {
-                System.out.println("slider value " + zoomSlider.getValue());
-                if (zoomSlider.getValue() == 56) {
-                    zoomSlider.setValue(57);
-                }
                 scrollView.zoomTo(zoomSlider.getValue() / 100.0);
                 zoomLabel.setText(zoomSlider.getValue() + "%");
             });
