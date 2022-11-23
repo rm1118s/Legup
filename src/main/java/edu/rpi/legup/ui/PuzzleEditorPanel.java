@@ -62,6 +62,9 @@ public class PuzzleEditorPanel extends LegupPanel implements IHistoryListener {
         setLayout(new BorderLayout());
     }
 
+    /**
+     * THis is use to sepup content
+     */
     protected void setupContent() {
         JSplitPane splitPanel;
         JPanel elementBox = new JPanel(new BorderLayout());
@@ -91,6 +94,9 @@ public class PuzzleEditorPanel extends LegupPanel implements IHistoryListener {
         revalidate();
     }
 
+    /**
+     * Set menu bar items
+     */
     public void setMenuBar() {
         String os = LegupUI.getOS();
         menuBar = new JMenuBar();
@@ -166,6 +172,9 @@ public class PuzzleEditorPanel extends LegupPanel implements IHistoryListener {
         frame.setJMenuBar(menuBar);
     }
 
+    /**
+     * Setup UI
+     */
     @Override
     public void makeVisible() {
         this.removeAll();
@@ -175,6 +184,9 @@ public class PuzzleEditorPanel extends LegupPanel implements IHistoryListener {
         setMenuBar();
     }
 
+    /**
+     * Set toolbar UI
+     */
     private void setupToolBar() {
         setToolBarButtons(new JButton[ToolbarName.values().length]);
         for (int i = 0; i < ToolbarName.values().length; i++) {
@@ -230,6 +242,12 @@ public class PuzzleEditorPanel extends LegupPanel implements IHistoryListener {
         this.add(toolBar, BorderLayout.NORTH);
     }
 
+    /**
+     * @param game game name
+     * @param rows number of rows
+     * @param columns number of columns
+     * @throws IllegalArgumentException
+     */
     public void loadPuzzleFromHome(String game, int rows, int columns) throws IllegalArgumentException {
         GameBoardFacade facade = GameBoardFacade.getInstance();
         try {
@@ -244,6 +262,9 @@ public class PuzzleEditorPanel extends LegupPanel implements IHistoryListener {
         }
     }
 
+    /**
+     * @return file name and puzzle file
+     */
     public Object[] promptPuzzle() {
         GameBoardFacade facade = GameBoardFacade.getInstance();
         if (facade.getBoard() != null) {
@@ -277,6 +298,10 @@ public class PuzzleEditorPanel extends LegupPanel implements IHistoryListener {
         loadPuzzle(fileName, puzzleFile);
     }
 
+    /**
+     * @param fileName puzzle file name
+     * @param puzzleFile puzzle file
+     */
     public void loadPuzzle(String fileName, File puzzleFile) {
         if (puzzleFile != null && puzzleFile.exists()) {
             try {
