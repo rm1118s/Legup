@@ -5,6 +5,8 @@ import org.gradle.api.artifacts.Dependency;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.FileWriter;
+import org.pegdown.PegDownProcessor;
+
 
 public class dependencyTracker {
     public static void main(String[] args) {
@@ -29,9 +31,17 @@ public class dependencyTracker {
             }
         }
 
-        try (FileWriter writer = new FileWriter("dependency.markdown")) {
-            // Write to the file using the write() method
+        try (FileWriter writer = new FileWriter("dependency.md")) {
             writer.write(String.valueOf(markdownString));
+        } catch (IOException e) {
+            System.out.println("error: " + e.getMessage());
+        }
+
+        PegDownProcessor renderer = new PegDownProcessor();
+        String htmlString = renderer.markdownToHtml(markdownString);
+
+        try (FileWriter writer = new FileWriter("dependency.html")) {
+            writer.write(String.valueOf(htmlString));
         } catch (IOException e) {
             System.out.println("error: " + e.getMessage());
         }
